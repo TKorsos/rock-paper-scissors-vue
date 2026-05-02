@@ -1,22 +1,12 @@
 <template>
-    <button class="reset-btn" @click="$emit('reset')">
-        🔄 Reset
-    </button>
+  <button
+    @click="$emit('openModal')"
+    class="px-5 py-2.5 mt-4 text-lg font-semibold rounded-xl 
+           bg-red-600 text-white
+           ring-1 ring-red-400/60 shadow-red-500/40 shadow-lg
+           hover:bg-red-700 active:scale-95 transition-all duration-150
+           flex items-center gap-2"
+  >
+    🔄 <span>Reset</span>
+  </button>
 </template>
-
-<style scoped>
-.reset-btn {
-  margin-top: 25px;
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-  border-radius: 8px;
-  border: 2px solid #888;
-  background: #f5f5f5;
-  transition: 0.2s;
-}
-
-.reset-btn:hover {
-  background: #ddd;
-}
-</style>

@@ -1,8 +1,8 @@
 <template>
-    <div class="scoreboard">
-        <p><strong>Te:</strong> {{ playerScore }}</p>
-        <p><strong>Gép:</strong> {{ computerScore }}</p>
-    </div>
+  <div class="flex justify-between bg-gray-900 text-white p-4 rounded-xl shadow-lg text-lg ring-1 ring-purple-500/50 shadow-purple-500/30">
+    <p><strong>Te:</strong> {{ playerScore }}</p>
+    <p><strong>Gép:</strong> {{ computerScore }}</p>
+  </div>
 </template>
 
 <script setup>
@@ -11,13 +11,3 @@ const props = defineProps({
     computerScore: Number
 })
 </script>
-
-<style scoped>
-.scoreboard {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-</style>

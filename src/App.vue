@@ -1,34 +1,52 @@
 <template>
-  <div class="game">
-    <h1>Kő-Papír-Olló</h1>
+  <div class="min-h-screen bg-gray-900 text-white flex flex-col items-center p-6 gap-6">
+
+    <h1 class="text-3xl font-bold text-center mt-4">
+      Kő – Papír – Olló
+    </h1>
 
     <!-- Pontszámláló -->
-    <ScoreBoard
-      :playerScore="playerScore"
-      :computerScore="computerScore"
-    />
+    <div class="w-full max-w-md">
+      <ScoreBoard
+        :playerScore="playerScore"
+        :computerScore="computerScore"
+      />
+    </div>
 
     <!-- Statisztika -->
-    <StatsBoard
-      :wins="wins"
-      :losses="losses"
-      :draws="draws"
-    />
+    <div class="w-full max-w-md">
+      <StatsBoard
+        :wins="wins"
+        :losses="losses"
+        :draws="draws"
+      />
+    </div>
 
     <!-- Reset gomb -->
-    <ResetButton @reset="resetGame" />
+    <ResetButton @openModal="openModal" />
+
+    <ConfirmResetModal
+      :show="showModal"
+      @cancel="cancelModal"
+      @confirm="confirmReset"
+    />
 
     <!-- Választó gombok -->
-    <ChoiceButtons @choose="play" />
+    <div class="w-full max-w-md">
+      <ChoiceButtons @choose="play" />
+    </div>
 
     <!-- Eredmény kijelzése -->
-    <ResultView 
-      :playerChoice="playerChoice"
-      :computerChoice="computerChoice"
-      :resultText="resultText"
-      :icons="icons"
-      :isThinking="isThinking"
-    />
+    <div class="w-full max-w-md">
+      <ResultView 
+        :playerChoice="playerChoice"
+        :computerChoice="computerChoice"
+        :resultText="resultText"
+        :icons="icons"
+        :isThinking="isThinking"
+      />
+    </div>
+
   </div>
 </template>
 
@@ -39,6 +57,7 @@ import ResultView from './components/ResultView.vue'
 import ScoreBoard from './components/ScoreBoard.vue'
 import StatsBoard from './components/StatsBoard.vue'
 import ResetButton from './components/ResetButton.vue'
+import ConfirmResetModal from './components/ConfirmResetModal.vue'
 
 const playerChoice = ref(null)
 const computerChoice = ref(null)
@@ -53,6 +72,7 @@ const draws = ref(0)
 const isThinking = ref(false)
 
 const STORAGE_KEY = "rps-game-data"
+const showModal = ref(false)
 
 const icons = {
   rock: "🪨 Kő",
@@ -155,12 +175,17 @@ function resetGame() {
 
   localStorage.removeItem(STORAGE_KEY)
 }
-</script>
 
-<style scoped>
-.game {
-  text-align: center;
-  margin-top: 40px;
-  font-family: Arial, sans-serif;
+function openModal() {
+  showModal.value = true
 }
-</style>
+
+function cancelModal() {
+  showModal.value = false
+}
+
+function confirmReset() {
+  showModal.value = false
+  resetGame()
+}
+</script>
