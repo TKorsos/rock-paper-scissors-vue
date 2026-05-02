@@ -44,18 +44,20 @@ npm run build
 
 ## 🗂 Projekt felépítése
 
+```sh
 src/
-components/
-ChoiceButtons.vue
-ResultView.vue
-ScoreBoard.vue
-StatsBoard.vue
-ResetButton.vue
-App.vue
-main.ts
+  components/
+    ChoiceButtons.vue
+    ResultView.vue
+    ScoreBoard.vue
+    StatsBoard.vue
+    ResetButton.vue
+  App.vue
+  main.ts
 public/
-index.html
+  index.html
 vite.config.ts
+```
 
 ---
 
